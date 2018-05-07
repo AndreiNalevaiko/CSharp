@@ -1,15 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
-namespace Aual0705
+using System;
+
+namespace Aula0705
 {
     class Program
     {
         static void Main(string[] args)
         {
+            int a = 10;
+
+            Console.WriteLine("Hello World");
+            Console.WriteLine("a: " + a);
+
+            if (Console.CapsLock)
+            {
+                Console.WriteLine("CapsLock ativado");
+            } else {
+                Console.WriteLine("CapsLock desativado");
+            }
+
+
+            Console.ReadKey();
+
         }
     }
 }

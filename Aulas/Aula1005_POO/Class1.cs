@@ -1,28 +1,33 @@
-﻿namespace Aula1005_POO {
+﻿using System;
 
-    class Cliente {
+namespace Aula1005_POO {
 
-        // Atributo
-        private string nome;
-        private string cpf;
+    class Cliente : Pessoa{
 
-        // Propriedade
-        public string Nome { get => nome; set => nome = value; }
-        public string Cpf { get => cpf; set => cpf = value; }
+        public DateTime DataNasc { get; set; }
 
+        public string DataQueNasceu {
+            get {
+                return DataNasc.ToShortDateString();
+            }
+        }
 
-        //Construtor
-        public Cliente() { //construtor vazio
+        public int Idade {
+            get {
+                return DateTime.Today.Year - DataNasc.Year;
+            }
+        }
+
+        public Cliente() {
+         
+        }
+
+        public Cliente(string nome) : base(nome) {
 
         }
 
-        public Cliente(string nome) {
-            Nome = nome;
-        }
+        public Cliente(string nome, string cpf) : base(nome, cpf){
 
-        public Cliente(string nome,  string cpf){
-            nome = nome;
-            cpf = cpf;
         }
 
 

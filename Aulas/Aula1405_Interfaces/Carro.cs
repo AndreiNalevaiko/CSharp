@@ -16,6 +16,8 @@ namespace Aula1405_Interfaces
 
         public virtual Marca _Marca { get; set; }
 
+        public List<Roda> Rodas { get; set; }
+
         public void Acelerar()
         {
             Velocidade += 10;

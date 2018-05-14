@@ -36,6 +36,8 @@ namespace Aula1405_Interfaces
             AcelerarBastante(o);
             Console.WriteLine(o.ImprimirInfo());
 
+            CriarRelacionamento();
+
             Console.ReadKey();
 
         }
@@ -56,7 +58,19 @@ namespace Aula1405_Interfaces
             Marca m = new Marca();
             m.Nome = "Chevrolet";
 
-            c._Marca = m;
+            //criando e armazenando dados
+            c.Rodas = new List<Roda>();
+            Roda r1 = new Roda();
+            c.Rodas.Add(r1);
+
+            for(int i = 0; i < 3; i++)
+            {
+                c.Rodas.Add(new Roda());
+            }
+
+            Console.WriteLine("Qtd rodas: " + c.Rodas.Count);
+             
+
 
             Onibus o = new Onibus();
             o.Modelo = "3100";

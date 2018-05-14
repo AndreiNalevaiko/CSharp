@@ -10,6 +10,12 @@ namespace Aula1405_Interfaces
     {
         public int Velocidade { get; set; }
 
+        public string Modelo { get; set; }
+
+        public int MarcaID { get; set; }
+
+        public virtual Marca _Marca { get; set; }
+
         public void Acelerar()
         {
             Velocidade += 7;
@@ -18,6 +24,11 @@ namespace Aula1405_Interfaces
         public void Desacelar()
         {
             Velocidade -= 2;
+        }
+
+        public string ImprimirInfo()
+        {
+            return "Onibus, velocidade atual: " + Velocidade;
         }
     }
 }

@@ -6,14 +6,9 @@ using System.Threading.Tasks;
 
 namespace Aula1405_Interfaces
 {
-    interface IMeioTransporte
+    class Marca
     {
-        int Velocidade { get; set; }
-
-        void Acelerar();
-        void Desacelar();
-        string ImprimirInfo();
-        
-
+        public int MarcaId { get; set; }
+        public string Nome { get; set; }
     }
 }

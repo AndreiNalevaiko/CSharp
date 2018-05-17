@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Aula1405_Interfaces
+{
+    class Carro : IMeioTransporte
+    {
+        public int Velocidade { get; set; }
+
+        public string Modelo { get; set; }
+
+        public int MarcaID { get; set; }
+
+        public virtual Marca _Marca { get; set; }
+
+        public List<Roda> Rodas { get; set; }
+
+        public void Acelerar()
+        {
+            Velocidade += 10;
+        }
+
+        public void Desacelar()
+        {
+            Velocidade -= 10;
+        }
+
+        public string ImprimirInfo()
+        {
+            return "Carro, velocidade atual: " + Velocidade;
+        }
+    }
+}

@@ -9,8 +9,8 @@ namespace Aula_1705_Camadas.Controllers
 {
     class AtividadesController
     {
-        //Lista
-        public List<Atividade> ListaAtividades { get; set; }
+        // simulando tabela
+        private static List<Atividade> ListaAtividades { get; set; } = new List<Atividade>();
 
         //Salvar
         public void Salvar(Atividade atividade  )

@@ -12,9 +12,12 @@ namespace Aula_1705_Camadas.Controllers
         // simulando tabela
         private static List<Atividade> ListaAtividades { get; set; } = new List<Atividade>();
 
+        private static int ContadorAtividade = 1;
+
         //Salvar
         public void Salvar(Atividade atividade  )
         {
+            atividade.AtividadeID = ContadorAtividade++;
             ListaAtividades.Add(atividade); //pega a lista e salva
         }
 
@@ -59,5 +62,29 @@ namespace Aula_1705_Camadas.Controllers
             }
         }
 
+        public List<Atividade> BuscarPorNome(string nome)
+        {
+            IEnumerable<Atividade> atividadeSelecionadas = new List<Atividade>();
+
+            /*foreach (Atividade a in ListaAtividades)
+            {   //Contains: busca palavra iguais    
+                if (a.Nome.ToLower().Contains(nome.ToLower())) //ToLower() : deixa tudo em minusculo
+                {
+                    atividadeSelecionadas.Add(a);
+                }
+            }*/
+
+            atividadeSelecionadas = from x in ListaAtividades where x.Nome.ToLower().Contains(nome.ToLower()) select x;
+
+            return atividadeSelecionadas.ToList(); //se ele nao entrar no if, quer dizer que ele nao achou atividade
+        }
+
+        public void BuscarPorStatus()
+        {
+            foreach (Atividade s in ListaAtividades)
+            {
+              
+            }
+        }
     }
 }

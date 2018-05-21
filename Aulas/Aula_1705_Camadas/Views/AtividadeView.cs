@@ -1,6 +1,7 @@
 ﻿using Aula_1705_Camadas.Controllers;
 using Aula_1705_Camadas.Models;
 using System;
+using System.Collections.Generic;
 
 namespace Aula_1705_Camadas.Views
 {
@@ -26,6 +27,8 @@ namespace Aula_1705_Camadas.Views
             BuscarAtividade = 3,
             EditarAtividade = 4,
             ExcluirAtividade = 5,
+            BuscarPorNome = 6,
+            AtividadeAtiva = 7,
             Sair = 9,
         }
 
@@ -43,6 +46,8 @@ namespace Aula_1705_Camadas.Views
                 Console.WriteLine("= 3) Exibir Atividade = ");
                 Console.WriteLine("= 4) Buscar Atividade = ");
                 Console.WriteLine("= 5) Excluir Atividade = ");
+                Console.WriteLine("= 6) Buscar Atividade por Nome = ");
+                Console.WriteLine("= 7) Listar Atividades (Ativos/Inativos) = ");
                 Console.WriteLine("= 9) Sair = ");
 
                 Console.WriteLine("=======================");
@@ -67,6 +72,13 @@ namespace Aula_1705_Camadas.Views
                     case MinhasOpcoes.ExcluirAtividade:
                         ExcluirAtividade();
                         break;
+                    case MinhasOpcoes.BuscarPorNome:
+                        BuscarPorNome();
+                        break;
+                    case MinhasOpcoes.AtividadeAtiva:
+                        BuscarPorStatus ();
+                        break;
+
 
                     default:
                         Console.WriteLine("Opção Invalida! Digite qualquer tecla para sair.");
@@ -154,8 +166,42 @@ namespace Aula_1705_Camadas.Views
             Atividade atividade = new Atividade();
             Console.Write("Digite o nome da atividade: ");
             atividade.Nome = Console.ReadLine();
-            atividade.Ativo = true;
+
+            Console.WriteLine("Ativo? (s/n): ");
+
+            atividade.Ativo = Console.ReadLine() == "s" ? true : false; //if e else: operador ternario
             return atividade;
         }
+
+        private void BuscarPorNome()
+        {
+
+            Console.Write("Digite o nome da atividade: ");
+
+            List<Atividade> lista = atividadeController.BuscarPorNome(Console.ReadLine());
+
+            if (lista.Count > 0)
+            {
+                foreach (Atividade a in lista)
+                {
+                    ExibirDetalhesAtividades(a);
+                }
+            } else
+            {
+                Console.WriteLine("Nada encontrado! ");
+            }
+            Console.ReadKey();
+        }
+
+        private void BuscarPorStatus()
+        {
+
+            Console.Write("Digite o status que deseja buscar(Ativo = a, Inativo = i): ");
+            string op = Console.ReadLine();
+
+    
+        }
+
+
     }
 }

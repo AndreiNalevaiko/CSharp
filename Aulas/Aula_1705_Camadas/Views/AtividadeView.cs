@@ -12,11 +12,29 @@ namespace Aula_1705_Camadas.Views
         public string Nome { get; private set; }
         public bool Ativo { get; private set; }
 
+        private AtividadesController atividadeController;
+
+        public AtividadeView()
+        {
+            atividadeController = new AtividadesController();
+        }
+
+        enum MinhasOpcoes
+        {
+            CriarAtividade = 1,
+            ListarAtividade = 2,
+            BuscarAtividade = 3,
+            EditarAtividade = 4,
+            ExcluirAtividade = 5,
+            Sair = 9,
+        }
+
         public void ExibirMenu()
         {
-            int opcao = 9;
+            MinhasOpcoes opcao = MinhasOpcoes.Sair;
             do
             {
+
                 Console.WriteLine("=======================");
 
                 Console.WriteLine("= Escolha uma opcao: = ");
@@ -29,31 +47,32 @@ namespace Aula_1705_Camadas.Views
 
                 Console.WriteLine("=======================");
 
-                opcao = int.Parse(Console.ReadLine());
+                opcao = (MinhasOpcoes) int.Parse(Console.ReadLine());
                 //return opcao;
 
                 switch (opcao)
                 {
-                    case 1:
+                    case MinhasOpcoes.CriarAtividade:
                         CriarAtividade();
                         break;
-                    case 2:
+                    case MinhasOpcoes.ListarAtividade:
                         ListarAtividade();
                         break;
-                    case 3:
+                    case MinhasOpcoes.BuscarAtividade:
                         BuscarAtividade();
                         break;
-                    case 4:
+                    case MinhasOpcoes.EditarAtividade:
                         EditarAtividade();
                         break;
-                    case 5:
+                    case MinhasOpcoes.ExcluirAtividade:
                         ExcluirAtividade();
                         break;
 
                     default:
+                        Console.WriteLine("Opção Invalida! Digite qualquer tecla para sair.");
                         break;
                }
-            } while (opcao != 9);
+            } while (opcao != MinhasOpcoes.Sair);
         }
 
         private void ExcluirAtividade()
@@ -63,7 +82,7 @@ namespace Aula_1705_Camadas.Views
             Console.WriteLine("Digite o id da atividade a ser editada");
             int id = int.Parse(Console.ReadLine());
 
-            AtividadesController atividadeController = new AtividadesController();
+            //AtividadesController atividadeController = new AtividadesController();
             atividadeController.Excluir(id);
         }
 
@@ -76,14 +95,14 @@ namespace Aula_1705_Camadas.Views
 
             Atividade atividadeAtualizada = ObterDadosAtividade();
 
-            AtividadesController atividadeController = new AtividadesController();
+           // AtividadesController atividadeController = new AtividadesController();
             atividadeController.Editar(id, atividadeAtualizada);
 
         }
 
         private void BuscarAtividade()
         {
-            AtividadesController atividadeController = new AtividadesController();
+            //AtividadesController atividadeController = new AtividadesController();
 
             Console.Write("Digite o id a aitividade: ");
             int id = int.Parse(Console.ReadLine());
@@ -103,8 +122,8 @@ namespace Aula_1705_Camadas.Views
 
         private void ListarAtividade()
         {
-            AtividadesController atividadeControl = new AtividadesController();
-            foreach (Atividade atividade in atividadeControl.Listar())
+           // AtividadesController atividadeControl = new AtividadesController();
+            foreach (Atividade atividade in atividadeController.Listar())
             {
                 ExibirDetalhesAtividades(atividade);
             }

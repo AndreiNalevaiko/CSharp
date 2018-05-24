@@ -81,10 +81,9 @@ namespace Aula_1705_Camadas.Controllers
 
         public void BuscarPorStatus()
         {
-            foreach (Atividade s in ListaAtividades)
-            {
-              
-            }
+            IEnumerable<Atividade> Lista = new List<Atividade>();
+
+            Lista = 
         }
     }
 }

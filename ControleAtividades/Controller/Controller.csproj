@@ -41,9 +41,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AtividadesController.cs" />
+    <Compile Include="Base\IBaseController.cs" />
     <Compile Include="CategoriaController.cs" />
     <Compile Include="UsuariosController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Modelos\Modelos.csproj">
+      <Project>{64788D36-083D-44B1-9BDC-C95DAE32A4E2}</Project>
+      <Name>Modelos</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

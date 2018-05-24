@@ -66,13 +66,7 @@ namespace Aula_1705_Camadas.Controllers
         {
             IEnumerable<Atividade> atividadeSelecionadas = new List<Atividade>();
 
-            /*foreach (Atividade a in ListaAtividades)
-            {   //Contains: busca palavra iguais    
-                if (a.Nome.ToLower().Contains(nome.ToLower())) //ToLower() : deixa tudo em minusculo
-                {
-                    atividadeSelecionadas.Add(a);
-                }
-            }*/
+   
 
             atividadeSelecionadas = from x in ListaAtividades where x.Nome.ToLower().Contains(nome.ToLower()) select x;
 

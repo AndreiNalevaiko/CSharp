@@ -52,6 +52,7 @@
     <Compile Include="AtividadesController.cs" />
     <Compile Include="Base\IBaseController.cs" />
     <Compile Include="CategoriaController.cs" />
+    <Compile Include="DAL\Contexto.cs" />
     <Compile Include="UsuariosController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

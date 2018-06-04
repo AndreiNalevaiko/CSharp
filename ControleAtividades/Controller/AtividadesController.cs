@@ -3,61 +3,59 @@ using Modelos;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using Controller.DAL;
 
 namespace Controller
 {
     class AtividadesController : IBaseController<Atividade>
     {
+        private Contexto contexto = new Contexto();
+
         private static List<Atividade> Lista { get; set; } = new List<Atividade>();
 
-        public void Adicionar(Atividade atividade)
+        public void Adicionar(Atividade entity)
         {
-            Lista.Add(atividade);
+            contexto.Atividades.Add(entity);
+            contexto.SaveChanges();
+           // Lista.Add(atividade);
         }
 
-        public void Atualizar(int id, Atividade atividadeAtualizada)
+        public void Atualizar(Atividade entity)
         {
-            Atividade atividadeAntiga = BuscarPorID(id);
-            if (atividadeAntiga != null)
-            {
-                atividadeAntiga.Nome = atividadeAtualizada.Nome;
-                atividadeAntiga.Ativo = atividadeAtualizada.Ativo;
-            }
+            contexto.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+
+            contexto.SaveChanges();
         }
 
         public Atividade BuscarPorID(int id)
         {
-            foreach (Atividade a in Lista)
+            return contexto.Atividades.Find(id);
+        }
+
+        public void Excluir(int idAtividade)
+        {
+            Atividade a = BuscarPorID(idAtividade);
+
+            if(a != null)
             {
-                if (a.AtividadeID == id)
-                {
-                    return a;
-                }
+                // contexto.Atividades.Remove(a);
+                contexto.Entry(a).State = System.Data.Entity.EntityState.Deleted;
+                contexto.SaveChanges();
             }
-
-            return null;
-        }
-
-        public void Excluir(Atividade atividade)
-        {
-            Lista.Remove(atividade);
-        }
-
-        public IList<Atividade> ListarPorNome()
-        {
-            throw new NotImplementedException();
+            
         }
 
         public IList<Atividade> ListarPorNome(string nome)
         {
-            IEnumerable<Atividade> atividadeSelecionadas = new List<Atividade>();
-            atividadeSelecionadas = from x in Lista where x.Nome.ToLower().Contains(nome.ToLower()) select x;
-            return atividadeSelecionadas.ToList();
+            /* var lista = from atividade in contexto.Atividades where atividade.Nome == nome select atividade;
+             return lista.ToList(); */
+
+            return contexto.Atividades.Where(atividade >= atividade.Nome == nome).ToList();   
         }
 
         public IList<Atividade> ListarTodos()
         {
-            return Lista;
+            return contexto.Ativdades.ToList();
         }
     }
 }

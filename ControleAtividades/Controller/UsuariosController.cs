@@ -1,15 +1,18 @@
 ﻿using Controller.Base;
+using Controller.DAL;
 using Modelos;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Controller
 {
     public class UsuariosController : IBaseController<Usuario>
     {
+        //Fazer bastante commit
+        //Criar um projeto de sua escolha
+        //Proposta
+        //titulo, descrição, funcionalidade
+        Contexto contexto = new Contexto();
         private static List<Usuario> Lista { get; set; } = new List<Usuario>();
 
         public void Adicionar(Usuario entity)
@@ -24,15 +27,7 @@ namespace Controller
 
         public Usuario BuscarPorID(int id)
         {
-            foreach (Usuario a in Lista)
-            {
-                if (a.UsuarioID == id)
-                {
-                    return a;
-                }
-            }
-
-            return null;
+            throw new NotImplementedException();
         }
 
         public void Excluir(Usuario entity)
